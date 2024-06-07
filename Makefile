@@ -15,7 +15,7 @@ re:
 
 
 clean: down
-	docker system prune -all 
+	docker system prune --all 
 	sudo rm -rf ~/data/wpdb
 	sudo rm -rf ~/data/db
 
