@@ -1,0 +1,47 @@
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: requirements/nginx/Dockerfile
+    container_name: nginx
+    ports:
+      - "443:443"
+    volumes:
+      - wpdb:/var/www/
+
+  mariadb:
+    build:
+      context: .
+      dockerfile: requirements/mariadb/Dockerfile
+    container_name: mariadb
+    expose:
+      - 3306
+    volumes:
+      - db:/var/lib/mysql
+    env_file:
+      - .env
+  wordpress:
+    build:
+      context: .
+      dockerfile: requirements/wordpress/Dockerfile
+    container_name: wordpress
+    expose:
+      - 9000
+    volumes:
+      - wpdb:/var/www/
+    env_file:
+      - .env
+
+volumes:
+  db:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/hcharia/data/db/
+
+  wpdb:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/hcharia/data/wpdb/
+
