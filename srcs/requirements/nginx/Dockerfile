@@ -11,6 +11,4 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 	-out /etc/nginx/ssl/hcharia.42.fr.crt \
 	-subj "/CN=hcharia.42.fr"
 
-COPY ./requirements/nginx/conf/nginx.conf /etc/nginx/http.d/
-
 CMD [ "nginx", "-g", "daemon off;" ]

@@ -20,10 +20,10 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 	chmod +x wp-cli.phar && \
 	mv wp-cli.phar /usr/local/bin/wp
 
-COPY ./requirements/wordpress/conf/conf.sh /conf.sh
+COPY ./requirements/wordpress/conf/conf.sh ./conf.sh
 
-RUN chmod +x conf.sh
+RUN chmod +x ./conf.sh
 
-ENTRYPOINT [ "sh", "conf.sh" ]
+ENTRYPOINT [ "sh", "./conf.sh" ]
 
 CMD [ "php-fpm83", "-F" ]
