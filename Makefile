@@ -1,23 +1,21 @@
 name=inception
 
-all:
-	bash srcs/requirements/tools/dir.sh
+all: build
 	docker compose -f ./srcs/docker-compose.yml up -d
 
 build:
-	bash srcs/requirements/tools/dir.sh
 	docker compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
 	docker compose -f ./srcs/docker-compose.yml down
 
-re:
-
+re: down all
 
 clean: down
-	docker system prune --all 
-	sudo rm -rf ~/data/wpdb
-	sudo rm -rf ~/data/db
+	sudo docker system prune --all
 
-fclean:
+fclean: clean
+	sudo rm -rf ~/data/wpdb/*
+	sudo rm -rf ~/data/db/*
 
+.PHONY: all build down re clean

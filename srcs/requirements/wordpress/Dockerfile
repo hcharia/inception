@@ -8,9 +8,7 @@ RUN apk add php \
 	php-phar \
 	php-iconv
 
-RUN sed -i "s|listen = 127.0.0.1:9000|listen = 0.0.0.0:9000|g" /etc/php83/php-fpm.d/www.conf && \
-    sed -i "s|;listen.owner = nobody|listen.owner = nobody|g" /etc/php83/php-fpm.d/www.conf && \
-	sed -i "s|;listen.group = nobody|listen.group = nobody|g" /etc/php83/php-fpm.d/www.conf
+COPY ./requirements/wordpress/conf/www.conf /etc/php83/php-fpm.d/www.conf
 
 WORKDIR /var/www/
 

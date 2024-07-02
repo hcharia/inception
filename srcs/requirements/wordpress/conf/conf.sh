@@ -7,6 +7,6 @@ wp core install --url="${DN}" --title="${TITLE}" --admin_user="${WP_USER}" --adm
 wp user create "${WP_MAN}" "${WP_MANMAIL}" --user_pass="${WP_MANPASS}" --role=editor --allow-root
 fi
 
-chmod -R 0777 wp-content/
+chmod -R 777 wp-content/
 
 exec $@
